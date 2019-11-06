@@ -151,7 +151,7 @@ class PrerenderMiddleware
 
         // prerender if a crawler is detected
         foreach ($this->crawlerUserAgents as $crawlerUserAgent) {
-            if (str_contains($userAgent, strtolower($crawlerUserAgent))) {
+            if (Str::contains($userAgent, strtolower($crawlerUserAgent))) {
                 $isRequestingPrerenderedPage = true;
             }
         }
@@ -195,9 +195,9 @@ class PrerenderMiddleware
         if ($this->prerenderToken) {
             $headers['X-Prerender-Token'] = $this->prerenderToken;
         }
-    
+
         $protocol = $request->isSecure() ? 'https' : 'http';
-    
+
         try {
             // Return the Guzzle Response
         $host = $request->getHost();
@@ -245,7 +245,7 @@ class PrerenderMiddleware
 
         foreach ($list as $pattern) {
             foreach ($needles as $needle) {
-                if (str_is($pattern, $needle)) {
+                if (Str::is($pattern, $needle)) {
                     return true;
                 }
             }
